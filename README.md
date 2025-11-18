@@ -102,6 +102,44 @@ python -m mela_cp.server
 
 See [LICENSE](LICENSE) file for details.
 
+## Troubleshooting
+
+### Database Not Found
+
+If you get an error about the database not being found:
+
+1. Check that Mela is installed on your system
+2. Verify the database path by looking in:
+   ```bash
+   ls ~/Library/Group\ Containers/*/mela.sqlite
+   ```
+3. Set the `MELA_DB_PATH` environment variable to the correct path in your Claude Desktop config
+
+### Server Not Starting
+
+If the MCP server doesn't start:
+
+1. Verify the installation:
+   ```bash
+   which mela-cp
+   ```
+2. Test the command manually:
+   ```bash
+   MELA_DB_PATH=/path/to/mela.sqlite mela-cp
+   ```
+3. Check Claude Desktop logs for error messages
+
+### No Recipes Showing
+
+If recipes aren't showing up:
+
+1. Verify your database has recipes:
+   ```bash
+   sqlite3 /path/to/mela.sqlite "SELECT COUNT(*) FROM ZRECIPE"
+   ```
+2. Check that the table schema matches what's expected
+3. Look for any error messages in Claude Desktop
+
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please feel free to submit a Pull Request. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
