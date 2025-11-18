@@ -6,18 +6,11 @@ to Claude and other AI assistants.
 """
 
 import asyncio
-import json
 import os
 from typing import Any, Optional
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
-from mcp.types import (
-    Tool,
-    TextContent,
-    ImageContent,
-    EmbeddedResource,
-    LoggingLevel
-)
+from mcp.types import Tool, TextContent
 
 from .database import MelaDatabase
 
