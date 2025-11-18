@@ -210,3 +210,5 @@ __marimo__/
 test_data/
 create_test_db.py
 test_mcp_server.py
+test_integration.py
+test_server_setup.py

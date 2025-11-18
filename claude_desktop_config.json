@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "mela": {
+      "command": "mela-cp",
+      "description": "Read recipes from Mela recipe manager"
+    }
+  }
+}
