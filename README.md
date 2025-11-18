@@ -15,6 +15,30 @@ Mela is a popular recipe manager app for macOS and iOS. This MCP server allows y
 
 ## Installation
 
+### Using uv (Recommended)
+
+[uv](https://github.com/astral-sh/uv) is a fast Python package installer that avoids externally managed environment issues.
+
+1. Install uv if you haven't already:
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+2. Clone this repository:
+```bash
+git clone https://github.com/sroberts/mela-cp.git
+cd mela-cp
+```
+
+3. Install the package:
+```bash
+uv pip install -e .
+```
+
+### Using pip
+
+If you prefer to use pip:
+
 1. Clone this repository:
 ```bash
 git clone https://github.com/sroberts/mela-cp.git
@@ -125,6 +149,10 @@ python -m mela_cp.server
 Install test dependencies:
 
 ```bash
+# Using uv (recommended)
+uv pip install -e ".[test]"
+
+# Or using pip
 pip install -e ".[test]"
 ```
 
@@ -137,6 +165,11 @@ pytest tests/ -v
 Run tests with coverage:
 
 ```bash
+# Using uv (recommended)
+uv pip install pytest-cov
+pytest tests/ --cov=src/mela_cp --cov-report=term-missing
+
+# Or using pip
 pip install pytest-cov
 pytest tests/ --cov=src/mela_cp --cov-report=term-missing
 ```

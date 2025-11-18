@@ -4,6 +4,30 @@ Thank you for your interest in contributing to mela-cp! This document provides g
 
 ## Development Setup
 
+### Using uv (Recommended)
+
+[uv](https://github.com/astral-sh/uv) is a fast Python package installer that avoids externally managed environment issues.
+
+1. Install uv if you haven't already:
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+2. Clone the repository:
+```bash
+git clone https://github.com/sroberts/mela-cp.git
+cd mela-cp
+```
+
+3. Install in development mode with test dependencies:
+```bash
+uv pip install -e ".[test]"
+```
+
+### Using pip
+
+If you prefer to use pip:
+
 1. Clone the repository:
 ```bash
 git clone https://github.com/sroberts/mela-cp.git
@@ -32,6 +56,11 @@ pytest tests/test_server.py -v
 
 Run tests with coverage:
 ```bash
+# Using uv (recommended)
+uv pip install pytest-cov
+pytest tests/ --cov=src/mela_cp --cov-report=term-missing
+
+# Or using pip
 pip install pytest-cov
 pytest tests/ --cov=src/mela_cp --cov-report=term-missing
 ```
