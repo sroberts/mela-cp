@@ -19,7 +19,14 @@ git clone https://github.com/sroberts/mela-cp.git
 cd mela-cp
 ```
 
-3. Install in development mode with test dependencies:
+3. Create and activate a virtual environment:
+```bash
+uv venv
+source .venv/bin/activate  # On macOS/Linux
+# Or on Windows: .venv\Scripts\activate
+```
+
+4. Install in development mode with test dependencies:
 ```bash
 uv pip install -e ".[test]"
 ```
@@ -34,7 +41,14 @@ git clone https://github.com/sroberts/mela-cp.git
 cd mela-cp
 ```
 
-2. Install in development mode with test dependencies:
+2. Create and activate a virtual environment:
+```bash
+python -m venv .venv
+source .venv/bin/activate  # On macOS/Linux
+# Or on Windows: .venv\Scripts\activate
+```
+
+3. Install in development mode with test dependencies:
 ```bash
 pip install -e ".[test]"
 ```
