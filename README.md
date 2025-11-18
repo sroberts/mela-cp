@@ -81,11 +81,50 @@ Add the following to your Claude Desktop configuration file:
 
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 
+**Important**: Since the package is installed in a virtual environment, you need to use the full path to the Python interpreter from your virtual environment.
+
+#### Option 1: Using Python module (Recommended)
+
+Replace `/path/to/mela-cp` with the actual path to your cloned repository:
+
 ```json
 {
   "mcpServers": {
     "mela": {
-      "command": "mela-cp"
+      "command": "/path/to/mela-cp/.venv/bin/python",
+      "args": ["-m", "mela_cp.server"]
+    }
+  }
+}
+```
+
+For example, if you cloned to `~/projects/mela-cp`:
+```json
+{
+  "mcpServers": {
+    "mela": {
+      "command": "/Users/sroberts/projects/mela-cp/.venv/bin/python",
+      "args": ["-m", "mela_cp.server"]
+    }
+  }
+}
+```
+
+#### Option 2: Using the mela-cp command directly
+
+Find the full path to mela-cp in your virtual environment:
+```bash
+cd /path/to/mela-cp
+source .venv/bin/activate
+which mela-cp
+```
+
+Then use that full path in the configuration:
+```json
+{
+  "mcpServers": {
+    "mela": {
+      "command": "/path/to/mela-cp/.venv/bin/mela-cp"
     }
   }
 }
@@ -97,7 +136,8 @@ If you need to specify a custom database path:
 {
   "mcpServers": {
     "mela": {
-      "command": "mela-cp",
+      "command": "/path/to/mela-cp/.venv/bin/python",
+      "args": ["-m", "mela_cp.server"],
       "env": {
         "MELA_DB_PATH": "/path/to/your/mela.sqlite"
       }
@@ -204,6 +244,42 @@ See [LICENSE](LICENSE) file for details.
 
 ## Troubleshooting
 
+### "spawn mela-cp ENOENT" Error in Claude Desktop
+
+If Claude Desktop shows `spawn mela-cp ENOENT` error:
+
+**Problem**: Claude Desktop cannot find the `mela-cp` command because it's installed in a virtual environment.
+
+**Solution**: Update your Claude Desktop config to use the full path to Python in your virtual environment:
+
+1. Find your project path (where you cloned mela-cp)
+2. Update `~/Library/Application Support/Claude/claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "mela": {
+      "command": "/full/path/to/mela-cp/.venv/bin/python",
+      "args": ["-m", "mela_cp.server"]
+    }
+  }
+}
+```
+
+For example:
+```json
+{
+  "mcpServers": {
+    "mela": {
+      "command": "/Users/sroberts/projects/mela-cp/.venv/bin/python",
+      "args": ["-m", "mela_cp.server"]
+    }
+  }
+}
+```
+
+3. Restart Claude Desktop
+
 ### Database Not Found
 
 If you get an error about the database not being found:
@@ -221,11 +297,13 @@ If the MCP server doesn't start:
 
 1. Verify the installation:
    ```bash
+   cd /path/to/mela-cp
+   source .venv/bin/activate
    which mela-cp
    ```
 2. Test the command manually:
    ```bash
-   MELA_DB_PATH=/path/to/mela.sqlite mela-cp
+   MELA_DB_PATH=/path/to/mela.sqlite python -m mela_cp.server
    ```
 3. Check Claude Desktop logs for error messages
 
