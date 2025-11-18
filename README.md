@@ -120,6 +120,33 @@ The server exposes the following tools to Claude:
 python -m mela_cp.server
 ```
 
+### Running Tests
+
+Install test dependencies:
+
+```bash
+pip install -e ".[test]"
+```
+
+Run the test suite:
+
+```bash
+pytest tests/ -v
+```
+
+Run tests with coverage:
+
+```bash
+pip install pytest-cov
+pytest tests/ --cov=src/mela_cp --cov-report=term-missing
+```
+
+The test suite includes:
+- **36 tests** covering database operations and MCP server functionality
+- Unit tests for all database methods (list, search, get, categories)
+- Integration tests for all MCP tools
+- Tests for error handling and edge cases
+
 ### Environment Variables
 
 - `MELA_DB_PATH`: Path to the Mela SQLite database file (optional if using default location)

@@ -10,23 +10,46 @@ git clone https://github.com/sroberts/mela-cp.git
 cd mela-cp
 ```
 
-2. Install in development mode:
+2. Install in development mode with test dependencies:
 ```bash
-pip install -e .
-```
-
-3. Create a test database (for testing without actual Mela data):
-```bash
-python create_test_db.py
+pip install -e ".[test]"
 ```
 
 ## Testing
 
-Run the test suite:
+### Running Tests
+
+Run the full test suite:
 ```bash
-python test_mcp_server.py
-python test_server_setup.py
+pytest tests/ -v
 ```
+
+Run specific test files:
+```bash
+pytest tests/test_database.py -v
+pytest tests/test_server.py -v
+```
+
+Run tests with coverage:
+```bash
+pip install pytest-cov
+pytest tests/ --cov=src/mela_cp --cov-report=term-missing
+```
+
+### Writing Tests
+
+- Place new tests in the `tests/` directory
+- Follow the existing test structure and naming conventions
+- Use pytest fixtures from `tests/conftest.py` for test databases
+- Write descriptive test names that explain what is being tested
+- Test both success and error cases
+- Aim for high test coverage of new code
+
+### Test Structure
+
+- `tests/conftest.py` - Shared fixtures (test databases)
+- `tests/test_database.py` - Tests for database operations
+- `tests/test_server.py` - Tests for MCP server functionality
 
 ## Code Style
 
@@ -35,12 +58,22 @@ python test_server_setup.py
 - Add docstrings to all public functions and classes
 - Keep functions focused and single-purpose
 
+## Continuous Integration
+
+Tests run automatically on:
+- Push to main branch or copilot/** branches
+- Pull requests to main
+- Python versions: 3.10, 3.11, 3.12
+- Operating systems: Ubuntu, macOS
+
+All tests must pass before merging.
+
 ## Submitting Changes
 
 1. Fork the repository
 2. Create a new branch for your feature
 3. Make your changes
-4. Test your changes thoroughly
+4. Run tests to ensure nothing breaks: `pytest tests/ -v`
 5. Submit a pull request with a clear description of the changes
 
 ## Reporting Issues
