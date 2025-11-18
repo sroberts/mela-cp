@@ -68,6 +68,32 @@ If you need to specify a custom database path:
 }
 ```
 
+## Starting the Server
+
+The MCP server is designed to run automatically when called by Claude Desktop, but you can also start it manually for testing:
+
+### Via Claude Desktop (Recommended)
+
+Once configured in Claude Desktop (see Configuration section above), the server starts automatically when you interact with Claude. Simply restart Claude Desktop after adding the configuration, and the server will be available.
+
+### Manual Start (For Testing)
+
+To start the server manually:
+
+```bash
+mela-cp
+```
+
+Or with a custom database path:
+
+```bash
+MELA_DB_PATH=/path/to/your/mela.sqlite mela-cp
+```
+
+The server runs in stdio mode and waits for MCP protocol messages. You'll see no output unless there's an error - this is normal behavior. Press `Ctrl+C` to stop the server.
+
+**Note**: Manual testing requires sending MCP protocol messages via stdin. For regular use, it's recommended to use the server through Claude Desktop.
+
 ## Usage
 
 Once configured, you can interact with your Mela recipes through Claude Desktop:
