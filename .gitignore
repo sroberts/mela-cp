@@ -205,3 +205,10 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Test data and scripts
+test_data/
+create_test_db.py
+test_mcp_server.py
+test_integration.py
+test_server_setup.py

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "mela": {
+      "command": "/path/to/mela-cp/.venv/bin/python",
+      "args": ["-m", "mela_cp.server"],
+      "description": "Read recipes from Mela recipe manager"
+    }
+  }
+}
